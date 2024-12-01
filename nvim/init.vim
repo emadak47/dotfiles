@@ -41,6 +41,7 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'kylechui/nvim-surround'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'luochen1990/rainbow'
+Plug 'jiangmiao/auto-pairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " cmd
