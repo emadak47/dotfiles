@@ -43,6 +43,9 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'luochen1990/rainbow'
 Plug 'jiangmiao/auto-pairs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" g:polyglot_disabled should be defined before loading vim-polyglot
+let g:polyglot_disabled = ['markdown']
+Plug 'sheerun/vim-polyglot'
 
 " cmd
 Plug 'hrsh7th/nvim-cmp'
