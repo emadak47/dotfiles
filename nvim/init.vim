@@ -179,7 +179,7 @@ if version >= 703
 endif 
 
 " Preview Fzf window at the bottom, occuping 20% of the window height
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout = { 'down': '~30%' }
 
 " Lightline configuration
 let g:lightline = {
