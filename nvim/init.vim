@@ -150,7 +150,7 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
 " Toggle between buffers
-nnoremap <leader><leader> <c-^>
+nnoremap <silent> <leader><leader> <c-^>
 
 " Show stats
 nnoremap <leader>z g<c-g>
