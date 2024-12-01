@@ -38,6 +38,7 @@ Plug 'tpope/vim-fugitive'
 " Semantic language support
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'kylechui/nvim-surround'
 Plug 'hrsh7th/vim-vsnip'
 
 " cmd
@@ -311,6 +312,8 @@ lspconfig.rust_analyzer.setup {
 }
 
 
+-- set up vim surround
+require'nvim-surround'.setup {} -- defualt configs
 
 -- set up barbar.nvim
 require'barbar'.setup {
