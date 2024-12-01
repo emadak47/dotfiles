@@ -40,6 +40,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'kylechui/nvim-surround'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'luochen1990/rainbow'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " cmd
@@ -242,8 +243,19 @@ function! LightlineFilename()
 endfunction
 " }}}
 
-" Lua Scripts  {{{
-lua << EOF
+" Rainbow {{{
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+    \ 'guifgs': [
+    \   '#828282',
+    \   'royalblue3',
+    \   'darkorange4',
+    \   'seagreen4',
+    \   'firebrick',
+    \   'darkorchid3',
+    \   ],
+    \ }
+" }}}
 
 -- Set up cmp
 -- https://github.com/hrsh7th/nvim-cmp/
