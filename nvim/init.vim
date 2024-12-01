@@ -17,8 +17,8 @@ call plug#begin("~/.config/nvim/autoload")
 Plug 'itchyny/lightline.vim'			" Lightline (status bar)
 Plug 'andymass/vim-matchup'				" Highlight and navigate sets of matching text
 
-" Theme 
-Plug 'ellisonleao/gruvbox.nvim'
+" Theme
+" Plug 'ellisonleao/gruvbox.nvim'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -90,9 +90,9 @@ set noshowmode
 set hidden
 
 " Color scheme
-set termguicolors		" required for all themes
-set background=dark		" set the background tone
-colorscheme gruvbox		" https://github.com/ellisonleao/gruvbox.nvim
+set termguicolors   " required for all themes
+set background=dark " set the background tone
+colorscheme onedark
 
 " GUI 
 set guioptions-=T		" Hide the toolbar
