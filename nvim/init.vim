@@ -42,6 +42,7 @@ Plug 'kylechui/nvim-surround'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'luochen1990/rainbow'
 Plug 'jiangmiao/auto-pairs'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " g:polyglot_disabled should be defined before loading vim-polyglot
 let g:polyglot_disabled = ['markdown']
@@ -49,7 +50,6 @@ Plug 'sheerun/vim-polyglot'
 
 " cmd
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp' 
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
@@ -227,7 +227,63 @@ if version >= 703
 	set undofile			" Save undos after files closes
 	set undodir=~/.vim/undo		" Where to save undo histories
 	set undoreload=10000
-endif 
+endif
+
+" YouCompleteMe {{{
+let g:ycm_language_server = 
+    \ [
+    \  {
+    \      'name': 'rust', 
+    \      'cmdline': ['rust-analyzer'], 
+    \      'filetypes': ['rust'], 
+    \      'project_root_files': ['Cargo.toml'],
+    \  }
+    \ ]
+let g:ycm_rest_analyzer_settings = {
+    \ 'rust-analyzer': {
+    \     'checkOnSave': {
+    \         'command': 'clippy',
+    \     },
+    \     'completion': {
+    \         'autoimport': {
+    \             'enable': v:true
+    \         },
+    \         'postfix': {
+    \             'enable': v:false,
+    \         },
+    \     },
+    \     'diagnostic': {
+    \         'enable': v:true,
+    \         'enableExperimental': v:true,
+    \     },
+    \     'cargo': {
+    \         'allFeatures': v:true
+    \     }
+    \ }
+    \ }
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_max_num_candidates = 25
+let g:ycm_filetype_blacklist = {
+    \ 'tagbar': 1,
+    \ 'qf': 1,
+    \ 'notes': 1,
+    \ 'markdown': 1,
+    \ 'unite': 1,
+    \ 'text': 1,
+    \ 'vimwiki': 1,
+    \ 'pandoc': 1,
+    \ 'infolog': 1,
+    \ 'mail': 1,
+    \ 'html': 1,
+    \ 'gitconfig': 1,
+    \ 'tex': 1,
+    \ 'bib': 0,
+    \}
+
+" YCM diagnostic
+let g:ycm_error_symbol = 'x'
+let g:ycm_warning_symbol = '>'
+" }}}
 
 " Preview Fzf window at the bottom, occuping 20% of the window height
 let g:fzf_layout = { 'down': '~30%' }
@@ -335,36 +391,36 @@ cmp.setup.cmdline(':', {
 
 -- Set up lspconfig
 local lspconfig = require('lspconfig')
-local function on_attach(client, buffer) 
-	-- Get signatures (and _only_ signatures) when in argument lists.
- 	-- require "lsp_signature".on_attach({
- 	-- 	doc_lines = 0,
- 	-- 	handler_opts = {
- 	-- 		border = "none"
- 	-- 	},
- 	-- })
-end 
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig.rust_analyzer.setup {
-	on_attach=on_attach,
- 	settings = {
- 		["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy",
-			}, 
- 			cargo = {
- 				allFeatures = true,
- 			},
- 			completion = {
- 				postfix = {
- 					enable = false,
- 				},
- 			},
- 		},
- 	},
- 	capabilities = capabilities
-}
+-- lspconfig.rust_analyzer.setup {
+--     -- on_attach=on_attach,
+--     settings = {
+--         ["rust-analyzer"] = {
+--             checkOnSave = {
+--                 command = "clippy",
+--             },
+--             imports = {
+--                 group = {
+--                     enable = false,
+--                 },
+--             },
+--             completion = {
+--                 postfix = {
+--                     enable = false,
+--                 },
+--             },
+--             cargo = {
+--                 allFeatures = true,
+--             },
+--         },
+--     },
+-- }
+-- Get signatures (and _only_ signatures) when in argument lists.
+require "lsp_signature".setup({
+	doc_lines = 0,
+	handler_opts = {
+		border = "none"
+	},
+})
 
 -- set up treesitter
 require'nvim-treesitter.configs'.setup {
