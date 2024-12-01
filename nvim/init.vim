@@ -62,6 +62,7 @@ set gdefault		" Search and replace
 set history=10000	" Save history up to 10000
 
 " Wildmenu
+set helpheight=30
 set wildmenu                " Enable auto completion meun after passing TAB
 set wildmode=list:longest   " Make wildmenu behave like similar to Base completion
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor " File extensions to ignore when editing in vim
