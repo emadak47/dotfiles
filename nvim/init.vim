@@ -158,14 +158,6 @@ nnoremap <leader><leader> <c-^>
 " Show stats 
 nnoremap <leader>z g<c-g>
 
-" Disable arrow keys 
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
