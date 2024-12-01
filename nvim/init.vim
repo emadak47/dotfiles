@@ -42,7 +42,6 @@ Plug 'kylechui/nvim-surround'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'luochen1990/rainbow'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " g:polyglot_disabled should be defined before loading vim-polyglot
 let g:polyglot_disabled = ['markdown']
@@ -50,6 +49,8 @@ Plug 'sheerun/vim-polyglot'
 
 " cmd
 Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
@@ -229,62 +230,6 @@ if version >= 703
 	set undoreload=10000
 endif
 
-" YouCompleteMe {{{
-let g:ycm_language_server = 
-    \ [
-    \  {
-    \      'name': 'rust', 
-    \      'cmdline': ['rust-analyzer'], 
-    \      'filetypes': ['rust'], 
-    \      'project_root_files': ['Cargo.toml'],
-    \  }
-    \ ]
-let g:ycm_rest_analyzer_settings = {
-    \ 'rust-analyzer': {
-    \     'checkOnSave': {
-    \         'command': 'clippy',
-    \     },
-    \     'completion': {
-    \         'autoimport': {
-    \             'enable': v:true
-    \         },
-    \         'postfix': {
-    \             'enable': v:false,
-    \         },
-    \     },
-    \     'diagnostic': {
-    \         'enable': v:true,
-    \         'enableExperimental': v:true,
-    \     },
-    \     'cargo': {
-    \         'allFeatures': v:true
-    \     }
-    \ }
-    \ }
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_max_num_candidates = 25
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar': 1,
-    \ 'qf': 1,
-    \ 'notes': 1,
-    \ 'markdown': 1,
-    \ 'unite': 1,
-    \ 'text': 1,
-    \ 'vimwiki': 1,
-    \ 'pandoc': 1,
-    \ 'infolog': 1,
-    \ 'mail': 1,
-    \ 'html': 1,
-    \ 'gitconfig': 1,
-    \ 'tex': 1,
-    \ 'bib': 0,
-    \}
-
-" YCM diagnostic
-let g:ycm_error_symbol = 'x'
-let g:ycm_warning_symbol = '>'
-" }}}
-
 " Preview Fzf window at the bottom, occuping 20% of the window height
 let g:fzf_layout = { 'down': '~30%' }
 
@@ -389,43 +334,53 @@ cmp.setup.cmdline(':', {
     })
 })
 
--- Set up lspconfig
-local lspconfig = require('lspconfig')
--- lspconfig.rust_analyzer.setup {
---     -- on_attach=on_attach,
---     settings = {
---         ["rust-analyzer"] = {
---             checkOnSave = {
---                 command = "clippy",
---             },
---             imports = {
---                 group = {
---                     enable = false,
---                 },
---             },
---             completion = {
---                 postfix = {
---                     enable = false,
---                 },
---             },
---             cargo = {
---                 allFeatures = true,
---             },
---         },
---     },
--- }
--- Get signatures (and _only_ signatures) when in argument lists.
-require "lsp_signature".setup({
-	doc_lines = 0,
-	handler_opts = {
-		border = "none"
-	},
-})
+local enabled_lsp = { 'clojure_lsp', 'pyright' }
+local lsp_capabilities = vim.tbl_deep_extend(
+    'force',
+    vim.lsp.protocol.make_client_capabilities(),
+    require('cmp_nvim_lsp').default_capabilities()
+)
+local lsp = require('lspconfig')
+for _, lsp_name in ipairs(enabled_lsp) do
+    lsp[lsp_name].setup({
+        capabilities = lsp_capabilities
+    })
+end
+
+local function on_attach(client, buffer) 
+	-- Get signatures (and _only_ signatures) when in argument lists.
+ 	require'lsp_signature'.on_attach({
+ 		doc_lines = 0,
+ 		handler_opts = {
+ 			border = "none"
+ 		},
+ 	})
+end 
+
+lsp['rust_analyzer'].setup {
+	on_attach=on_attach,
+ 	settings = {
+ 		["rust-analyzer"] = {
+			checkOnSave = {
+				command = "clippy",
+			}, 
+ 			cargo = {
+ 				allFeatures = true,
+ 			},
+ 			completion = {
+ 				postfix = {
+ 					enable = false,
+ 				},
+ 			},
+ 		},
+ 	},
+ 	capabilities = capabilities
+}
 
 -- set up treesitter
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "lua", "vim", "vimdoc", "sql" },
+  ensure_installed = { "lua", "vim", "vimdoc", "sql", "rust" },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
   -- Automatically install missing parsers when entering buffer
@@ -442,7 +397,7 @@ require'nvim-treesitter.configs'.setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = { "c", "rust" },
+    disable = { "c" },
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     --disable = function(lang, buf)
     --    local max_filesize = 100 * 1024 -- 100 KB
