@@ -57,3 +57,5 @@ function gtree
         echo "Usage: gtree --ff FOLDER"
     end
 end
+
+fzf --fish | source
