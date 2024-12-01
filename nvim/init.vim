@@ -48,6 +48,9 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 
+" Stylistic
+Plug 'zirrostig/vim-schlepp'
+
 " Rust
 Plug 'rust-lang/rust.vim'
 
@@ -178,6 +181,12 @@ nnoremap <leader>g :nohlsearch<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :Rg<cr>
 
+" Schlepp
+vmap <up> <Plug>SchleppUp
+vmap <down> <Plug>SchleppDown
+vmap <left> <Plug>SchleppLeft
+vmap <right> <Plug>SchleppRight
+
 " Buffer bar (barbar)
 nnoremap <silent> <leader>1 :BufferGoto 1<cr>
 nnoremap <silent> <leader>2 :BufferGoto 2<cr>
@@ -195,6 +204,12 @@ nnoremap <silent> <leader>X :BufferRestore<cr>
 " ===========================================================================
 " # Vimscript
 " ===========================================================================
+
+" Schlepp {{{
+let g:Schlepp#allowSquishingLines = 0
+let g:Schlepp#allowSquishingBlock = 0
+let g:Schlepp#trimWS = 0
+" }}}
 
 " Enable permananet undo
 if version >= 703
