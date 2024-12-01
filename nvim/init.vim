@@ -222,8 +222,9 @@ endif
 " Preview Fzf window at the bottom, occuping 20% of the window height
 let g:fzf_layout = { 'down': '~30%' }
 
-" Lightline configuration
+" Lightline configuration {{{
 let g:lightline = {
+      \ 'enable': {'statusline': 1, 'tabline': 0},
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -238,6 +239,7 @@ let g:lightline = {
 function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
+" }}}
 
 " Lua Scripts  {{{
 lua << EOF
