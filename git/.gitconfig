@@ -1,0 +1,47 @@
+[user]
+	email = emadakhrasidleb@gmail.com
+	name = Emad Akhras
+
+[color "decorate"]
+	branch = 10 bold
+	remoteBranch = 1
+	tag = 3 bold
+	HEAD = 14
+
+[color "diff"]
+	meta = 4
+	frag = 5
+
+[log]
+	abbrevCommit = true
+	date = format:%a, %Y-%m-%d %R (%z)
+	showRoot = true
+
+[pretty]
+	# oneline
+	fo = %C(auto)%h%d %s %C(241)@%an %C(67)(%ar)%C(auto)
+	# full
+	fl = format:%C(auto)%h %p%d%n%C(110)%ar %C(67)- %ad%n%C(37)%an %C(241)<%ae>%n%n%w(0, 1, 1)%C(230)%s%n%+b
+
+[log]
+    date = format:%a, %Y-%m-%d %R (%z)
+    showRoot = true
+
+[fetch]
+    prune = true
+
+[pull]
+    rebase = true
+
+[push]
+    default = upstream
+    followTags = true
+
+[github]
+    user = emadak47
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = master
