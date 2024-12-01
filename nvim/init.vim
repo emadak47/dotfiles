@@ -190,6 +190,10 @@ vmap <down> <Plug>SchleppDown
 vmap <left> <Plug>SchleppLeft
 vmap <right> <Plug>SchleppRight
 
+" Toggles
+nmap <silent> <leader>tw  :setlocal wrap!<cr>
+nmap <silent> <leader>trb :RainbowToggle<cr>
+
 " Buffer bar (barbar)
 nnoremap <silent> <leader>1 :BufferGoto 1<cr>
 nnoremap <silent> <leader>2 :BufferGoto 2<cr>
