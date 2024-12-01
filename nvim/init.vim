@@ -108,6 +108,7 @@ set foldmethod=indent     " Enable indent folding by default
 set showcmd               " Show partial command in status line
 set mouse=a               " Enable mouse usage (all modes) in terminals
 set clipboard=unnamedplus " Use system clipborad
+set signcolumn=yes
 
 " ===========================================================================
 " # Mappings
