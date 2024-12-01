@@ -79,7 +79,7 @@ set updatetime=300	" You will have bad experience for diagnostic messages when i
 set shiftwidth=4	" width for auto indents
 set softtabstop=4 	" see multiple spaces as tabstops
 set tabstop=4		" number of columns occupied by a tab
-set noexpandtab 	" don't convert tabs to whitespace
+set expandtab		" don't convert tabs to whitespace
 
 " Editor
 set autoindent
