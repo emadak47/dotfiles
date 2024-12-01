@@ -49,6 +49,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-vsnip'
 
 " Stylistic
+Plug 'godlygeek/tabular'
 Plug 'zirrostig/vim-schlepp'
 
 " Rust
