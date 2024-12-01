@@ -360,6 +360,13 @@ let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 " }}}
 " ===========================================================================
+" # Highlights
+" ===========================================================================
+
+" Syntax highlighting for `Todo` keywords
+syn keyword Todo    TODO NOTE FIXME REFACTOR HARDCODE HACK
+syn keyword Todo    Todo Note Fixme Refactor Hardcode Hack
+syn keyword Todo    todo note fixme refactor hardcode hack
 
 " ===========================================================================
 " # Autocmmands
