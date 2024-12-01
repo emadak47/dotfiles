@@ -110,7 +110,7 @@ set number                " Add numbers to each line on the left-hand side
 set relativenumber        " Line number one is the cursor line
 set showmatch             " Highlight matching bracket
 set ttyfast               " Speed up scrolling
-set nofoldenable          " Prevent default folding
+set foldmethod=indent     " Enable indent folding by default
 set showcmd               " Show partial command in status line
 set mouse=a               " Enable mouse usage (all modes) in terminals
 set clipboard=unnamedplus " Use system clipborad
