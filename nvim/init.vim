@@ -94,13 +94,6 @@ set termguicolors   " required for all themes
 set background=dark " set the background tone
 colorscheme onedark
 
-" GUI 
-set guioptions-=T		" Hide the toolbar
-set guioptions-=r		" Hide the right-side scroll bar
-set guioptions-=L		" Hide the left-side scroll bar
-set guioptions-=m		" Hide the menu bar
-set guioptions-=b		" Hide the button scroll bar 
-
 " Pane Split
 set splitright
 set splitbelow
