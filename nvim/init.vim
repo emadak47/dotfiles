@@ -320,11 +320,27 @@ autocmd BufRead *.pacnew set readonly
 
 " Follow Rust code style rules
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
-au Filetype rust set colorcolumn=100
+"au Filetype rust set colorcolumn=100
 
-" Jump to the last edit position on opening a file
-if has("autocmd")
-  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" Help filetype detection
+autocmd BufRead *.psql set filetype=sql
+autocmd BufRead *.sql set filetype=sql
+autocmd BufRead *.md set filetype=markdown
+autocmd BufRead *.tex set filetype=tex
 
+" Strip trailing spaces on save
+autocmd BufWritePre *.clj :%s/\s\+$//e
+autocmd BufWritePre *.py
+
+augroup usr
+    autocmd!
+    autocmd BufRead     *.vim set foldmethod=marker
+
+    autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g'\"" |
+        \ endif
+
+    autocmd BufNewFile,BufRead  *.sol setf solidity
+    autocmd BufWritePost        *.sync.py !jupytext -s %
+augroup END
