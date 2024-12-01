@@ -1,7 +1,7 @@
 " ===========================================================================
-" # General 
+" # General
 " ===========================================================================
-set nocompatible " Dissable compatibility with vi which can cause unexpected issues
+set nocompatible    " Disable compatibility with vi which can cause unexpected issues
 
 " Filtype
 filetype off 		" Disable type file detection
@@ -9,7 +9,7 @@ filetype plugin on 	" Enable plugins and load plugin for the detected file type
 filetype indent on 	" Load an indent file for the detected file type.
 
 " ===========================================================================
-" # Plugin 
+" # Plugin
 " ===========================================================================
 call plug#begin("~/.config/nvim/autoload")
 
@@ -50,7 +50,7 @@ Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " ===========================================================================
-" # Customisation options 
+" # Customisation options
 " ===========================================================================
 
 " Search
@@ -58,20 +58,19 @@ set ignorecase		" Case insensitive search
 set hlsearch		" Highlights searchs
 set incsearch		" Incremental Search
 set smartcase		" Override thew ignorecase option if searching for capital letters
-set gdefault		" Search and replace with %s/<old>/<new>
-set history=10000	" Save history up to 10000 
+set gdefault		" Search and replace
+set history=10000	" Save history up to 10000
 
-" Wildmenu 
-set wildmenu 			" Enable auto completion meun after passing TAB
-set wildmode=list:longest 	" Make wildmenu behave like similar to Base completion
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor      " File extensions to ignore when editing in vim 
-
+" Wildmenu
+set wildmenu                " Enable auto completion meun after passing TAB
+set wildmode=list:longest   " Make wildmenu behave like similar to Base completion
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor " File extensions to ignore when editing in vim
 
 " Completion
 " menuone: popup even when there's only one match
 " noinsert: Do not insert text until a selection is made
 " noselect: Do not select, force user to select one from the menu
-set completeopt=menuone,noinsert,noselect 
+set completeopt=menuone,noinsert,noselect
 set cmdheight=2		" Better display for messages
 set updatetime=300	" You will have bad experience for diagnostic messages when it's default 4000.
 
@@ -81,7 +80,7 @@ set softtabstop=4 	" see multiple spaces as tabstops
 set tabstop=4		" number of columns occupied by a tab
 set noexpandtab 	" don't convert tabs to whitespace
 
-" Editor 
+" Editor
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
@@ -105,30 +104,30 @@ set guioptions-=b		" Hide the button scroll bar
 set splitright
 set splitbelow
 
-" Misc 
-syntax on			" Turn synatx highlighting on
-set number			" Add numbers to each line on the left-hand side 
-set relativenumber		" Line number one is the cursor line
-set showmatch			" Highlight matching bracket
-set ttyfast			" Speed up scrolling
-set nofoldenable		" Prevent default folding
-set showcmd			" Show partial command in status line 
-set mouse=a			" Enable mouse usage (all modes) in terminals
-set clipboard=unnamedplus	" Use system clipborad
+" Misc
+syntax on                 " Turn synatx highlighting on
+set number                " Add numbers to each line on the left-hand side
+set relativenumber        " Line number one is the cursor line
+set showmatch             " Highlight matching bracket
+set ttyfast               " Speed up scrolling
+set nofoldenable          " Prevent default folding
+set showcmd               " Show partial command in status line
+set mouse=a               " Enable mouse usage (all modes) in terminals
+set clipboard=unnamedplus " Use system clipborad
 
 " ===========================================================================
-" # Mappings  
+" # Mappings
 " ===========================================================================
 let mapleader = "\<Space>"
 
-" Yank from cursor to end of line 
-nnoremap Y y$ 
+" Yank from cursor to end of line
+nnoremap Y y$
 " ; as :
 nnoremap ; :
 
 " Quick save
 nmap <leader>w :w<cr>
-" Quick save and quit 
+" Quick save and quit
 nmap <leader>q :wq<cr>
 
 " Navigate the split view easier by pressing:
@@ -155,28 +154,28 @@ nnoremap <silent> g* g*zz
 " Toggle between buffers
 nnoremap <leader><leader> <c-^>
 
-" Show stats 
+" Show stats
 nnoremap <leader>z g<c-g>
 
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
 
-" Unhighlight search results 
+" Unhighlight search results
 vnoremap <leader>g :nohlsearch<cr>
 nnoremap <leader>g :nohlsearch<cr>
 
-" fzf and Rg search 
+" fzf and Rg search
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :Rg<cr>
 
 " ===========================================================================
-" # Vimscript 
+" # Vimscript
 " ===========================================================================
 
-" Enable permananet undo 
+" Enable permananet undo
 if version >= 703
-	set undofile			" Save undos after files closes 
+	set undofile			" Save undos after files closes
 	set undodir=~/.vim/undo		" Where to save undo histories
 	set undoreload=10000
 endif 
@@ -207,7 +206,6 @@ lua << EOF
 -- Set up cmp
 -- https://github.com/hrsh7th/nvim-cmp/
 local cmp = require'cmp'
-
 cmp.setup({
 	-- REQUIRED - you must specify a snippet engine
 	snippet = {
@@ -239,7 +237,7 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+-- Use buffer source for `/` and `?` "if you enabled `native_menu`, this won't work anymore".
 cmp.setup.cmdline({ '/', '?' }, {
 	mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -308,9 +306,9 @@ let g:rustfmt_fail_silently = 0
 " }}}
 
 " ===========================================================================
-" # Autocmmands 
+" # Autocmmands
 " ===========================================================================
-"
+
 " Prevent accidental writes to buffers that shouldn't be edited
 autocmd BufRead *.orig set readonly
 autocmd BufRead *.pacnew set readonly
