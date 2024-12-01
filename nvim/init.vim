@@ -261,6 +261,22 @@ let g:rainbow_conf = {
     \ }
 " }}}
 
+" Clojure {{{
+let g:iced_enable_default_key_mappings = v:true
+let g:sexp_mappings = {'sexp_indet': '', 'sexp_indet_top': ''}
+" }}}
+
+" Rust {{{
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+" }}}
+
+" ===========================================================================
+" # Lua Scripts
+" ===========================================================================
+
+lua << EOF
 -- Set up cmp
 -- https://github.com/hrsh7th/nvim-cmp/
 local cmp = require'cmp'
@@ -396,23 +412,34 @@ require'barbar'.setup {
     },
 }
 
-
 EOF
-" }}}
 
-" # Clojure {{{
-" Enable vim-iced's default key mapping 
-let g:iced_enable_default_key_mappings = v:true
+" ===========================================================================
+" # Functions + Commands
+" ===========================================================================
 
-" Formatting code functions with vim-iced's vim-sexp
-let g:sexp_mappings = {'sexp_indet': '', 'sexp_indet_top': ''}
-" }}}
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = join([
+    \ 'rg',
+    \ '--column',
+    \ '--line-number',
+    \ '--no-heading',
+    \ '--color=always',
+    \ '--smart-case',
+    \ '-- %s || true'
+    \ ], ' ')
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {
+    \ 'options': [
+    \   '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command
+    \ ]}
+  call fzf#vim#grep(
+    \ initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
 
-" # Rust  {{{
-let g:rustfmt_autosave = 1		" Auto run :RustFmt on saving buffer
-let g:rustfmt_emit_files = 1
-let g:rustfmt_fail_silently = 0
-" }}}
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+
 " ===========================================================================
 " # Highlights
 " ===========================================================================
