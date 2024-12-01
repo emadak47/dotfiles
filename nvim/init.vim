@@ -33,6 +33,7 @@ Plug 'liquidz/vim-iced', { 'for': 'clojure' }
 
 " Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Semantic language support
 Plug 'neovim/nvim-lspconfig'
