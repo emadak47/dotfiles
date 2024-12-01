@@ -85,7 +85,7 @@ set noexpandtab 	" don't convert tabs to whitespace
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
-set scrolloff=2
+set scrolloff=7
 set noshowmode
 set hidden
 
