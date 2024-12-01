@@ -14,8 +14,10 @@ filetype indent on 	" Load an indent file for the detected file type.
 call plug#begin("~/.config/nvim/autoload")
 
 " GUI
-Plug 'itchyny/lightline.vim'			" Lightline (status bar)
-Plug 'andymass/vim-matchup'				" Highlight and navigate sets of matching text
+Plug 'itchyny/lightline.vim'            " Lightline (status bar)
+Plug 'andymass/vim-matchup'             " Highlight and navigate sets of matching text
+Plug 'lewis6991/gitsigns.nvim'          " Git status in tabs bar
+Plug 'romgrk/barbar.nvim'
 
 " Theme
 " Plug 'ellisonleao/gruvbox.nvim'
@@ -174,6 +176,20 @@ nnoremap <leader>g :nohlsearch<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>r :Rg<cr>
 
+" Buffer bar (barbar)
+nnoremap <silent> <leader>1 :BufferGoto 1<cr>
+nnoremap <silent> <leader>2 :BufferGoto 2<cr>
+nnoremap <silent> <leader>3 :BufferGoto 3<cr>
+nnoremap <silent> <leader>4 :BufferGoto 4<cr>
+nnoremap <silent> <leader>5 :BufferGoto 5<cr>
+nnoremap <silent> <leader>6 :BufferGoto 6<cr>
+nnoremap <silent> <leader>7 :BufferGoto 7<cr>
+nnoremap <silent> <leader>8 :BufferGoto 8<cr>
+nnoremap <silent> <leader>9 :BufferGoto 9<cr>
+nnoremap <silent> <leader>0 :BufferLast<cr>
+nnoremap <silent> <leader>x :BufferClose<cr>
+nnoremap <silent> <leader>X :BufferRestore<cr>
+
 " ===========================================================================
 " # Vimscript
 " ===========================================================================
@@ -293,6 +309,18 @@ lspconfig.rust_analyzer.setup {
  	capabilities = capabilities
 }
 
+
+
+-- set up barbar.nvim
+require'barbar'.setup {
+    icons = {
+        filetype = {
+            enabled = false,
+        },
+    },
+}
+
+
 EOF
 " }}}
 
@@ -309,6 +337,7 @@ let g:rustfmt_autosave = 1		" Auto run :RustFmt on saving buffer
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 " }}}
+" ===========================================================================
 
 " ===========================================================================
 " # Autocmmands
