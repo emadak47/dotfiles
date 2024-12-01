@@ -94,6 +94,13 @@ set termguicolors   " required for all themes
 set background=dark " set the background tone
 colorscheme onedark
 
+" Files
+set autoread
+set noswapfile
+set nowritebackup
+set fileencoding=utf8
+set fileformat=unix
+
 " Pane Split
 set splitright
 set splitbelow
