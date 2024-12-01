@@ -124,21 +124,24 @@ nmap <leader>w :w<cr>
 " Quick save and quit
 nmap <leader>q :wq<cr>
 
-" Navigate the split view easier by pressing:
-" CTRL+j, CTRL+k, CTRL+h, or CTRL+l
-nnoremap <leader>j <c-w>j
-nnoremap <leader>k <c-w>k
-nnoremap <leader>h <c-w>h
-nnoremap <leader>l <c-w>l
+" Split window
+nmap <silent> <leader>- :sp<cr>
+nmap <silent> <leader><bar> :vsp<cr>
 
-" Resize split windows using arrow keys by pressing:
-" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT
-noremap <c-up> <c-w>+
-noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
+" Navigate the split view
+nnoremap <silent> <leader>j <c-w>j
+nnoremap <silent> <leader>k <c-w>k
+nnoremap <silent> <leader>h <c-w>h
+nnoremap <silent> <leader>l <c-w>l
 
-" Center the cursor vertically when moving to the next word during a search  
+" Resize split windows
+noremap <silent> <leader><Up> <c-w>+
+noremap <silent> <leader><Down> <c-w>-
+noremap <silent> <leader><Left> <c-w>>
+noremap <silent> <leader><Right> <c-w><
+noremap <silent> <leader>= <c-w>=
+
+" Center the cursor vertically when moving to the next word during a search
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
