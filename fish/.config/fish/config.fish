@@ -1,13 +1,16 @@
+# Add HomeBrew's bin directory to path so you can use HomeBrew's binaries like `starship`
+# Fish uses `fish_add_path` instead of `export PATH` modify $PATH.
+fish_add_path "/opt/homebrew/bin/"
+
+# Always enable Rust Backtrace
+set -x RUST_BACKTRACE 1
+
+# Enable Starship prompt
+starship init fish | source
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-
-# Setting PATH for Python 3.<x>
-# set -x PATH "/Library/Frameworks/Python.framework/Versions/3.10/bin" "$PATH"
-set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
-
-# Setting PATH for vim-iced
-set -x PATH "~/.config/nvim/autoload/vim-iced/bin" "$PATH"
 
 #### Aliases ####
 
@@ -17,8 +20,8 @@ alias ..='cd ..'
 alias ....='cd ../..'
 alias ......='cd ../../..'
 
-# exa
-alias exa='exa --long --all'
+# eza
+alias eza='eza --long --all'
 
 # editor
 alias nv='nvim'

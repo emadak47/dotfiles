@@ -20,7 +20,7 @@ Plug 'lewis6991/gitsigns.nvim'          " Git status in tabs bar
 Plug 'romgrk/barbar.nvim'
 
 " Theme
-" Plug 'ellisonleao/gruvbox.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -107,7 +107,8 @@ set hidden
 " Color scheme
 set termguicolors   " required for all themes
 set background=dark " set the background tone
-colorscheme onedark
+colorscheme gruvbox
+" colorscheme onedark 
 
 " Files
 set autoread
@@ -361,11 +362,12 @@ lsp['rust_analyzer'].setup {
 	on_attach=on_attach,
  	settings = {
  		["rust-analyzer"] = {
-			checkOnSave = {
+			check = {
 				command = "clippy",
 			}, 
  			cargo = {
  				allFeatures = true,
+                targetDir = true,
  			},
  			completion = {
  				postfix = {
