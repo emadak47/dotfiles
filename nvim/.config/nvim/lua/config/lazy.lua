@@ -1,5 +1,6 @@
--- load options
+-- load options and keymaps
 require("config.options")
+require("config.keymaps")
 
 -- grab the manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
