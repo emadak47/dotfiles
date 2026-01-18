@@ -5,40 +5,40 @@ return {
 		dependencies = {
 			"neovim/nvim-lspconfig",
 		},
-        version = '1.*',
+		version = "1.*",
 		opts = {
 			keymap = { preset = "enter" },
-			
+
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
 			},
-			
+
 			completion = {
 				accept = {
 					auto_brackets = {
 						enabled = true,
 					},
 				},
-                menu = {
-                    auto_show = true,
-                },
+				menu = {
+					auto_show = true,
+				},
 				documentation = {
 					auto_show = true,
-                    auto_show_delay_ms = 200
+					auto_show_delay_ms = 200,
 				},
 			},
-			
+
 			appearance = {
 				use_nvim_cmp_as_default = false,
 				nerd_font_variant = "mono",
 			},
-			
-            fuzzy = { implementation = "prefer_rust_with_warning" },
 
-            -- signature help
-            signature = { enabled = true },
+			fuzzy = { implementation = "prefer_rust_with_warning" },
 
-            cmdline = {
+			-- signature help
+			signature = { enabled = true },
+
+			cmdline = {
 				enabled = true,
 				keymap = {
 					preset = "cmdline",
@@ -50,7 +50,7 @@ return {
 						end,
 					},
 				},
-            },
+			},
 		},
 
 		config = function(_, opts)
@@ -65,7 +65,7 @@ return {
 					-- Scroll up
 					vim.keymap.set("n", "<C-b>", "<C-b>", opts_doc)
 					vim.keymap.set("i", "<C-b>", "<C-b>", opts_doc)
-                    -- Half page down
+					-- Half page down
 					vim.keymap.set("n", "<C-d>", "<C-d>", opts_doc)
 					vim.keymap.set("i", "<C-d>", "<C-d>", opts_doc)
 					-- Half page up
@@ -76,3 +76,4 @@ return {
 		end,
 	},
 }
+

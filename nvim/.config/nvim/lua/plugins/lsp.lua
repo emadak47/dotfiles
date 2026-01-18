@@ -12,7 +12,6 @@ return {
 			},
 		},
 	},
-
 	-- Bridge between Mason and lspconfig
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -25,7 +24,7 @@ return {
 			},
 		},
 	},
-
+	-- LSP configuration
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -33,10 +32,14 @@ return {
 			"mason-lspconfig.nvim",
 			"saghen/blink.cmp",
 		},
-
 		config = function()
 			local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
 
+			-- ============================================================================
+			-- LSP Server Configurations
+			-- ============================================================================
+
+			-- Rust
 			vim.lsp.config("rust_analyzer", {
 				capabilities = blink_capabilities,
 				settings = {
@@ -47,6 +50,7 @@ return {
 						},
 						checkOnSave = {
 							enable = true,
+							command = "clippy",
 						},
 						check = {
 							command = "clippy",
@@ -66,6 +70,7 @@ return {
 			})
 			vim.lsp.enable("rust_analyzer")
 
+			-- Lua
 			vim.lsp.config("lua_ls", {
 				capabilities = blink_capabilities,
 				settings = {
@@ -87,12 +92,13 @@ return {
 			})
 			vim.lsp.enable("lua_ls")
 
+			-- Python
 			vim.lsp.config("pyright", {
 				capabilities = blink_capabilities,
 			})
 			vim.lsp.enable("pyright")
 
-			-- Bash LSP
+			-- Optional LSP servers (only if executable exists)
 			if vim.fn.executable("bash-language-server") == 1 then
 				vim.lsp.config("bashls", {
 					capabilities = blink_capabilities,
@@ -100,34 +106,71 @@ return {
 				vim.lsp.enable("bashls")
 			end
 
-			-- texlab for LaTeX
 			if vim.fn.executable("texlab") == 1 then
+				vim.lsp.config("texlab", {
+					capabilities = blink_capabilities,
+				})
 				vim.lsp.enable("texlab")
 			end
 
-			-- Ruff for Python
 			if vim.fn.executable("ruff") == 1 then
 				vim.lsp.config("ruff_lsp", {
 					capabilities = blink_capabilities,
 				})
-				vim.lsp.enable("ruff")
+				vim.lsp.enable("ruff_lsp")
 			end
 
-			-- Global mappings
-			vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+			-- ============================================================================
+			-- Diagnostics Configuration
+			-- ============================================================================
+
+			vim.diagnostic.config({
+				virtual_text = false,
+				virtual_lines = false, -- Off by default
+				signs = true, -- Show in signcolumn
+				underline = true, -- Underline errors
+				update_in_insert = false,
+				severity_sort = true,
+			})
+
+			-- Toggle inline diagnostics
+			local virtual_lines_enabled = false
+			local function toggle_virtual_lines()
+				virtual_lines_enabled = not virtual_lines_enabled
+				vim.diagnostic.config({
+					virtual_lines = virtual_lines_enabled and {
+						only_current_line = true,
+						highlight_whole_line = true,
+					} or false,
+				})
+			end
+
+			-- ============================================================================
+			-- Keybindings
+			-- ============================================================================
+
+			-- Diagnostic navigation
+			vim.keymap.set("n", "<leader>d", toggle_virtual_lines, { desc = "Toggle inline diagnostics" })
 			vim.keymap.set("n", "[d", function()
-				vim.diagnostic.jump({ count = 1, float = true })
-			end)
+				vim.diagnostic.jump({ count = -1, float = true })
+			end, { desc = "Previous diagnostic" })
 			vim.keymap.set("n", "]d", function()
 				vim.diagnostic.jump({ count = 1, float = true })
-			end)
+			end, { desc = "Next diagnostic" })
+			-- Action
+			vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
+
+			-- ============================================================================
+			-- LSP Attach Configuration
+			-- ============================================================================
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 				callback = function(event)
-					-- Buffer local mappings
 					local opts = { buffer = event.buf, noremap = true, silent = true }
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+					-- Navigation (using fzf-lua)
 					vim.keymap.set("n", "gD", function()
 						require("fzf-lua").lsp_declarations({ jump1 = true, ignore_current_line = true })
 					end, opts)
@@ -140,19 +183,12 @@ return {
 					vim.keymap.set("n", "gi", function()
 						require("fzf-lua").lsp_implementations({ jump1 = true, ignore_current_line = true })
 					end, opts)
-					--vim.keymap.set("n", "gt", function()
-					--	require("fzf-lua").lsp_typedefs({ jump1 = true, ignore_current_line = true })
-					--end, opts)
-					vim.keymap.set({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, opts)
 
-					-- Get the client
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-
+					-- Client-specific settings
 					if client.server_capabilities.inlayHintProvider then
 						vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
 					end
 
-					-- Disable semantic tokens (cleaner, less noise)
 					client.server_capabilities.semanticTokensProvider = nil
 
 					-- Format on save

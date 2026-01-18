@@ -23,7 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 require("config.autocmds")
 require("config.highlights").setup()
 
--- start steup 
+-- start steup
 require("lazy").setup({
 	spec = { { import = "plugins" } },
 	checker = {

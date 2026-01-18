@@ -1,9 +1,9 @@
 {
   "barbar.nvim": { "branch": "master", "commit": "539d73def39c9172b4d4d769f14090e08f37b29d" },
+  "base16-nvim": { "branch": "main", "commit": "a33c90b6b82edc2fdc8b5ff9cf0937d06b651e7b" },
   "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
   "fzf-lua": { "branch": "main", "commit": "abe5ecafebb4e24feb162384d5f492431036e791" },
   "gitsigns.nvim": { "branch": "main", "commit": "42d6aed4e94e0f0bbced16bbdcc42f57673bd75e" },
-  "gruvbox.nvim": { "branch": "main", "commit": "a472496e1a4465a2dd574389dcf6cdb29af9bf1b" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lightline.vim": { "branch": "master", "commit": "e358557e1a9f9fc860416c8eb2e34c0404078155" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "80c0130c5f16b551865a69e832f1feadeedb5fbe" },
