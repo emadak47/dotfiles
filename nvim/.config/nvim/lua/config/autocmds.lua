@@ -7,7 +7,7 @@ end
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
-		(vim.hl or vim.highlight).on_yank({ timeout = 100 }) -- fade after 0.1s
+		(vim.hl or vim.highlight).on_yank({ timeout = 50 }) -- fade after 0.05s
 	end,
 })
 
