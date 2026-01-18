@@ -30,4 +30,8 @@ require("lazy").setup({
 		enabled = false, -- don't check for plugin updates periodically
 		notify = false, -- don't notify on update
 	},
+	change_detection = {
+		enabled = true, -- auto-reload on config file changes
+		notify = false, -- don't show notif in status line
+	},
 })
