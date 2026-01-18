@@ -51,6 +51,10 @@ keymap("n", "<right>", ":bn<CR>", { noremap = true })
 keymap("v", "<leader>g", ":nohlsearch<cr>", { noremap = true })
 keymap("n", "<leader>g", ":nohlsearch<cr>", { noremap = true })
 
+-- Move selected text up/down using built-in :m command
+keymap("v", "<Up>", ":m '<-2<CR>gv=gv", { noremap = true })
+keymap("v", "<Down>", ":m '>+1<CR>gv=gv", { noremap = true })
+
 -- fzf and Rg search
 --keymap("n", "<leader>f", ":Files<cr>", { noremap = true })
 --keymap("n", "<leader>r", ":Rg<cr>", { noremap = true })
