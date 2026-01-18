@@ -54,6 +54,8 @@ keymap("n", "<leader>g", ":nohlsearch<cr>", { noremap = true })
 -- fzf and Rg search
 --keymap("n", "<leader>f", ":Files<cr>", { noremap = true })
 --keymap("n", "<leader>r", ":Rg<cr>", { noremap = true })
+keymap("n", "<leader>f", function() require("fzf-lua").files() end, opts)
+keymap("n", "<leader>r", function() require("fzf-lua").live_grep() end, opts)
 
 -- Buffer bar (barbar)
 keymap("n", "<leader>1", "<Cmd>BufferGoto 1<CR>", opts)
