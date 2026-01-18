@@ -189,7 +189,7 @@ return {
 						vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
 					end
 
-					client.server_capabilities.semanticTokensProvider = nil
+					-- 					client.server_capabilities.semanticTokensProvider = nil
 
 					-- Format on save
 					if client.server_capabilities.documentFormattingProvider then
