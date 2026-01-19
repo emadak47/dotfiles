@@ -28,7 +28,7 @@ else
     echo "Neovim already installed"
 fi
 
-FISH_CONFIG="$HOME/.config/fish/config.fish"
+FISH_CONFIG="/home/root/.config/fish/config.fish"
 FISH_PATH_LINE='fish_add_path "/opt/nvim-linux-x86_64/bin"'
 
 if [ -f "$FISH_CONFIG" ]; then
