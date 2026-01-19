@@ -28,22 +28,6 @@ else
     echo "Neovim already installed"
 fi
 
-FISH_CONFIG="/home/root/.config/fish/config.fish"
-FISH_PATH_LINE='fish_add_path "/opt/nvim-linux-x86_64/bin"'
-
-if [ -f "$FISH_CONFIG" ]; then
-    if ! grep -q "/opt/nvim-linux-x86_64/bin" "$FISH_CONFIG"; then
-        echo "" >> "$FISH_CONFIG"
-        echo "# Add Neovim to PATH" >> "$FISH_CONFIG"
-        echo "$FISH_PATH_LINE" >> "$FISH_CONFIG"
-        echo "Added Neovim to fish PATH"
-    else
-        echo "Neovim already in fish PATH"
-    fi
-else
-    echo "Warning: $FISH_CONFIG not found. You may need to manually add: $FISH_PATH_LINE"
-fi
-
 echo "Installing Starship..."
 if ! command -v starship &> /dev/null; then
     curl -sS https://starship.rs/install.sh | sh
@@ -56,6 +40,9 @@ cd ~/dotfiles
 
 echo "Applying dotfiles with stow..."
 stow -t ~ nvim bat tig fish
+
+echo "Adding Neovim to fish PATH..."
+fish -c 'fish_add_path "/opt/nvim-linux-x86_64/bin"'
 
 echo "Changing default shell to fish..."
 if command -v fish &> /dev/null; then
