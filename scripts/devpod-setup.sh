@@ -55,7 +55,7 @@ fi
 cd ~/dotfiles
 
 echo "Applying dotfiles with stow..."
-stow -t ~ nvim bat git shell tig tmux zsh fish alacritty
+stow -t ~ nvim bat tig fish
 
 echo ""
 echo "=========================================="
