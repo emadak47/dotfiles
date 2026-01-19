@@ -20,7 +20,7 @@ return {
 			ensure_installed = {
 				"rust_analyzer",
 				"lua_ls",
-				"pyright",
+				--"pyright",
 			},
 		},
 	},
@@ -93,10 +93,10 @@ return {
 			vim.lsp.enable("lua_ls")
 
 			-- Python
-			vim.lsp.config("pyright", {
-				capabilities = blink_capabilities,
-			})
-			vim.lsp.enable("pyright")
+			--vim.lsp.config("pyright", {
+			--	capabilities = blink_capabilities,
+			--})
+			--vim.lsp.enable("pyright")
 
 			-- Optional LSP servers (only if executable exists)
 			if vim.fn.executable("bash-language-server") == 1 then
