@@ -57,8 +57,24 @@ cd ~/dotfiles
 echo "Applying dotfiles with stow..."
 stow -t ~ nvim bat tig fish
 
+echo "Changing default shell to fish..."
+if command -v fish &> /dev/null; then
+    FISH_PATH=$(which fish)
+    if [ -n "$FISH_PATH" ]; then
+        chsh -s "$FISH_PATH" || echo "Warning: Could not change shell (may need to be done manually)"
+        echo "Default shell changed to fish: $FISH_PATH"
+    else
+        echo "Warning: Could not find fish binary"
+    fi
+else
+    echo "Warning: fish not found"
+fi
+
 echo ""
 echo "=========================================="
 echo "Dotfiles installation complete!"
 echo "=========================================="
+echo ""
+echo "Note: You may need to restart your shell or run:"
+echo "  exec fish"
 echo ""
