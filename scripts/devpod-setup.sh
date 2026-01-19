@@ -16,6 +16,6 @@ apt-get update && apt-get install -y \
 cd ~/dotfiles
 
 echo "Applying dotfiles with stow..."
-stow -t ~ nvim bat git shell tig tmux fish
+stow -t ~ nvim bat tig tmux fish
 
 echo "Dotfiles installation complete!"
