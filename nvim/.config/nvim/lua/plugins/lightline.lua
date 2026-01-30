@@ -31,7 +31,7 @@ return {
 				if vim.fn.expand("%:t") == "" then
 					return "[No Name]"
 				else
-					return vim.fn.getreg("%")
+					return vim.fn.expand("%")
 				end
 			end
 
