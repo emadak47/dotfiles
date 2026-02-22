@@ -12,6 +12,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Pixi
+set -gx PATH "/Users/emadak47/.pixi/bin" $PATH
+pixi completion --shell fish | source
+
 #### Aliases ####
 
 # shell
@@ -62,3 +66,4 @@ function gtree
 end
 
 fzf --fish | source
+
