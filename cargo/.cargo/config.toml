@@ -1,0 +1,13 @@
+# replace target-dir with build-dir once it's stable
+# https://users.rust-lang.org/t/outsourcing-the-target-directory-for-every-project/137219
+
+#[unstable]
+#build-dir-new-layout = true
+
+[build]
+target-dir = "/Users/emadak47/.cargo/target"
+#build-dir = "/Users/emadak47/.cargo/target"
+
+[profile.dev]
+#debug = "line-tables-only"
+split-debuginfo = "unpacked"
