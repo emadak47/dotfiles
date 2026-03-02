@@ -194,7 +194,7 @@ return {
 					-- Format on save
 					if client.server_capabilities.documentFormattingProvider then
 						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
+							group = vim.api.nvim_create_augroup("LspFormat_" .. event.buf, { clear = true }),
 							buffer = event.buf,
 							callback = function()
 								vim.lsp.buf.format({ bufnr = event.buf })
