@@ -47,6 +47,7 @@ return {
 						cargo = {
 							allFeatures = true,
 							targetDir = true,
+							allTargets = false,
 						},
 						checkOnSave = {
 							enable = true,
