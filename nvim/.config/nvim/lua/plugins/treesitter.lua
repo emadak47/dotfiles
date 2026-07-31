@@ -21,6 +21,7 @@ return {
 				"css",
 				"javascript",
 				"typescript",
+				"sql",
 			},
 			highlight = {
 				enable = true,
