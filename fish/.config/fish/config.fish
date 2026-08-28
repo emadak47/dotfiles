@@ -66,4 +66,5 @@ function gtree
 end
 
 fzf --fish | source
+zoxide init fish | source
 
