@@ -1,0 +1,64 @@
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$rust\
+$python\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = true
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "blue"
+truncation_length = 4
+truncate_to_repo = true
+truncation_symbol = "…/"
+repo_root_style = "bold blue"
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)"
+read_only = " "
+
+[git_branch]
+symbol = " "
+style = "bold red"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "yellow"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "\\$${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[git_state]
+style = "bold red"
+format = "\\([$state( $progress_current/$progress_total)]($style)\\) "
+
+[cmd_duration]
+min_time = 2000
+style = "dimmed white"
+format = "[$duration]($style) "
+
+[rust]
+symbol = " "
+style = "red"
+format = "[$symbol($version )]($style)"
+
+[python]
+symbol = " "
+style = "cyan"
+format = "[$symbol($version )(\\($virtualenv\\) )]($style)"
+
