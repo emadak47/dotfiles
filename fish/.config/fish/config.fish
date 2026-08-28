@@ -21,8 +21,8 @@ pixi completion --shell fish | source
 # shell
 alias c='clear'
 alias ..='cd ..'
-alias ....='cd ../..'
-alias ......='cd ../../..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # eza
 alias eza='eza --long --all'
