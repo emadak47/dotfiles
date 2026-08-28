@@ -124,7 +124,6 @@ builtin_box_drawing = true
 # colors primary
 # This section documents the [colors.primary] table of the configuration file.
 
-[colors]
 #foreground = "#d8d8d8"
 #background = "#181818"
 #dim_foreground = "#828482"
@@ -161,9 +160,6 @@ builtin_box_drawing = true
 # This section documents the [colors.search] table of the configuration.
 # Allowed values are hexadecimal colors like #ff00ff, or CellForeground/CellBackground, which references the affected cell.
 
-[colors.search]
-matches = { foreground = "#181818", background = "#ac4242" }
-focused_match = { foreground = "#181818", background = "#f4bf75" }
 
 # matches = { foreground = "<string>", background = "<string>" }
 # Default: { foreground = "#181818", background = "#ac4242" }
@@ -186,9 +182,6 @@ focused_match = { foreground = "#181818", background = "#f4bf75" }
 # colors hints
 # This section documents the [colors.hints] table of the configuration.
 
-[colors.hints]
-start = { foreground = "#181818", background = "#f4bf75" }
-end = { foreground = "#181818", background = "#ac4242" }
 
 # start = { foreground = "<string>", background = "<string>" }
 # First character in the hint label.
@@ -218,29 +211,11 @@ end = { foreground = "#181818", background = "#ac4242" }
 # This section documents the [colors.normal] table of the configuration.
 # Defaults from Alacritty.org used.
 
-[colors.normal]
-black = "#181818"
-red = "#ac4242"
-green = "#90a959"
-yellow = "#f4bf75"
-blue = "#6a9fb5"
-magenta = "#aa759f"
-cyan = "#75b5aa"
-white = "#d8d8d8"
 
 # bright
 # This section documents the [colors.bright] table of the configuration.
 # Defaults from Alacritty.org used.
 
-[colors.bright]
-black = "#6b6b6b"
-red = "#c55555"
-green = "#aac474"
-yellow = "#feca88"
-blue = "#82b8c8"
-magenta = "#c28cb8"
-cyan = "#93d3c3"
-white = "#f8f8f8"
 
 
 # dim
@@ -248,15 +223,6 @@ white = "#f8f8f8"
 # If the dim colors are not set, they will be calculated automatically based on the normal colors.
 
 
-[colors.dim]
-black = "#0f0f0f"
-red = "#712b2b"
-green = "#5f6f3a"
-yellow = "#a17e4d"
-blue = "#456877"
-magenta = "#704d68"
-cyan = "#4d7770"
-white = "#8e8e8e"
 
 
 # BELL
@@ -384,7 +350,7 @@ hide_when_typing = false
 
 live_config_reload = true
 import = [
-    "~/.config/alacritty/themes/themes/one_dark.toml",
+    "~/.config/alacritty/colors/base16-default-dark.toml",
 ]
 
 [terminal]
