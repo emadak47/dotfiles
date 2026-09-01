@@ -1,0 +1,14 @@
+# Generated with: cargo install --list
+# Apply with: cargo install --locked $(grep -v '^\s*\(#\|$\)' Cargofile)
+
+bacon
+bottom
+cargo-binutils
+cargo-expand
+cargo-nextest
+cargo-machete
+eza
+flowistry_ide
+sqlx-cli
+tokei
+zoxide
