@@ -18,10 +18,10 @@ return {
 		dependencies = { "mason.nvim" },
 		opts = {
 			ensure_installed = {
-				"rust_analyzer",
 				"lua_ls",
 				--"pyright",
 			},
+			automatic_enable = { exclude = { "rust_analyzer" } },
 		},
 	},
 	-- LSP configuration
@@ -38,38 +38,6 @@ return {
 			-- ============================================================================
 			-- LSP Server Configurations
 			-- ============================================================================
-
-			-- Rust
-			vim.lsp.config("rust_analyzer", {
-				capabilities = blink_capabilities,
-				settings = {
-					["rust-analyzer"] = {
-						cargo = {
-							allFeatures = true,
-							targetDir = true,
-							allTargets = false,
-						},
-						checkOnSave = {
-							enable = true,
-							command = "clippy",
-						},
-						check = {
-							command = "clippy",
-						},
-						imports = {
-							group = {
-								enable = false,
-							},
-						},
-						completion = {
-							postfix = {
-								enable = false,
-							},
-						},
-					},
-				},
-			})
-			vim.lsp.enable("rust_analyzer")
 
 			-- Lua
 			vim.lsp.config("lua_ls", {
