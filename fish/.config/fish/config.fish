@@ -1,6 +1,7 @@
-fish_add_path "/opt/homebrew/bin/"
-fish_add_path "$HOME/.cargo/bin"
-fish_add_path "$HOME/.local/bin"
+fish_add_path -g "/opt/homebrew/bin"
+fish_add_path -g "$HOME/.cargo/bin"
+fish_add_path -g "$HOME/.local/bin"
+fish_add_path -g "$HOME/.fzf/bin"
 
 # Always enable Rust Backtrace
 set -x RUST_BACKTRACE 1
