@@ -776,3 +776,8 @@ import = [
 # highlight_damage = true | false
 # Highlight window damage information.
 # Default: false
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
